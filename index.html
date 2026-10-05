@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jurnal PERI Palopo — Pembangunan, Riset dan Inovasi</title>
+<meta name="description" content="Jurnal ilmiah akses terbuka bidang Pembangunan, Riset dan Inovasi Daerah Palopo">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="brand" onclick="navigate('home');return false">
+      <div class="brand-logo">PERI</div>
+      <div class="brand-text">
+        <strong>Jurnal PERI</strong>
+        <small>Palopo</small>
+      </div>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+
+    <nav class="nav-menu" id="navMenu">
+      <a href="#" onclick="navigate('home');return false">Beranda</a>
+      <a href="#" onclick="navigate('archives');return false">Arsip</a>
+      <a href="#" onclick="navigate('about');return false">Tentang</a>
+      <a href="#" onclick="navigate('submit');return false">Submit</a>
+      <a href="#" onclick="navigate('dashboard');return false" id="navDash" class="hidden">Dashboard</a>
+
+      <div class="auth-area">
+        <button id="loginBtn" class="btn btn-google" onclick="loginWithGoogle()">
+          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.4 29.3 35 24 35c-6.1 0-11-4.9-11-11s4.9-11 11-11c2.8 0 5.4 1.1 7.4 2.8l5.7-5.7C33.6 6.9 29.1 5 24 5 12.4 5 3 14.4 3 26s9.4 21 21 21 21-9.4 21-21c0-1.9-.2-3.7-.4-5.5z"/><path fill="#FF3D00" d="M6.3 15.1l6.6 4.8C14.7 16 19 13 24 13c2.8 0 5.4 1.1 7.4 2.8l5.7-5.7C33.6 6.9 29.1 5 24 5 16.3 5 9.7 9.3 6.3 15.1z"/><path fill="#4CAF50" d="M24 47c5.1 0 9.7-1.9 13.2-5.1l-6.1-5.2C29.2 38.2 26.7 39 24 39c-5.3 0-9.7-3.6-11.3-8.5l-6.5 5C9.5 42.6 16.2 47 24 47z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.7l6.1 5.2C40.9 35.9 45 31 45 26c0-1.9-.2-3.7-.4-5.5z"/></svg>
+          <span>Login Google</span>
+        </button>
+
+        <div id="userArea" class="user-area hidden">
+          <img id="userAvatar" class="avatar" alt="User">
+          <span id="userName" class="user-name"></span>
+          <button class="btn btn-ghost" onclick="logout()">Keluar</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== LOADER ========== -->
+<div id="loader" class="loader hidden">
+  <div class="spinner"></div>
+</div>
+
+<!-- ========== TOAST ========== -->
+<div id="toast" class="toast"></div>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<section id="page-home" class="page active">
+  <div class="hero">
+    <div class="container hero-inner">
+      <span class="badge">Open Access • Peer Reviewed • e-ISSN: XXXX-XXXX</span>
+      <h1>Jurnal <span class="highlight">PERI</span> Palopo</h1>
+      <p class="subtitle">Pembangunan, Riset dan Inovasi — Wadah publikasi ilmiah untuk kemajuan Kota Palopo dan Kawasan Teluk Bone</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="navigate('submit')">Submit Artikel</button>
+        <button class="btn btn-outline" onclick="navigate('archives')">Lihat Arsip</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Fokus & Scope -->
+    <div class="grid-2">
+      <div class="card">
+        <h3>🎯 Fokus & Scope</h3>
+        <ul class="list">
+          <li>Pembangunan Daerah & Tata Ruang</li>
+          <li>Riset Terapan (Pertanian, Perikanan, Kelautan)</li>
+          <li>Inovasi Daerah & Smart City</li>
+          <li>Kebijakan Publik & Tata Kelola</li>
+          <li>Ekonomi Biru Kawasan Teluk Bone</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📢 Pengumuman</h3>
+        <div class="announce">
+          <span class="tag">Call for Papers</span>
+          <p><strong>Vol. 1 No. 1 (2026)</strong> — Deadline submisi: 30 November 2026</p>
+        </div>
+        <div class="announce">
+          <span class="tag tag-green">Terbit</span>
+          <p>Edisi perdana akan terbit pada Desember 2026</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistik -->
+    <div class="stats">
+      <div class="stat"><h4 id="statArticles">0</h4><p>Artikel</p></div>
+      <div class="stat"><h4>2</h4><p>Edisi/Tahun</p></div>
+      <div class="stat"><h4>4</h4><p>Reviewer</p></div>
+      <div class="stat"><h4>100%</h4><p>Open Access</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ARSIP ==================== -->
+<section id="page-archives" class="page">
+  <div class="container">
+    <h2 class="page-title">Arsip Artikel</h2>
+    <p class="muted">Daftar artikel yang telah dipublikasikan</p>
+    <div id="archivesList" class="articles-list">
+      <div class="empty">Belum ada artikel yang dipublikasikan</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TENTANG ==================== -->
+<section id="page-about" class="page">
+  <div class="container">
+    <h2 class="page-title">Tentang Jurnal</h2>
+
+    <div class="card">
+      <h3>Tentang Jurnal PERI Palopo</h3>
+      <p>Jurnal PERI Palopo (Pembangunan, Riset dan Inovasi) adalah jurnal ilmiah akses terbuka yang dikelola oleh Badan Perencanaan Pembangunan, Riset dan Inovasi Daerah (Bapperida) Kota Palopo. Jurnal ini menjadi wadah diseminasi hasil penelitian, kajian kebijakan, dan inovasi daerah yang mendukung pembangunan berkelanjutan di Kota Palopo dan Kawasan Teluk Bone.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>📋 Kebijakan</h3>
+        <ul class="list">
+          <li>Double-blind peer review</li>
+          <li>Open Access (Diamond/Platinum)</li>
+          <li>Frekuensi: 2 edisi/tahun</li>
+          <li>Bahasa: Indonesia & Inggris</li>
+          <li>Lisensi: CC BY-SA 4.0</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>👥 Dewan Redaksi</h3>
+        <ul class="list">
+          <li><strong>Editor-in-Chief</strong><br><span class="muted">Kepala Bapperida Kota Palopo</span></li>
+          <li><strong>Managing Editor</strong><br><span class="muted">Tim Bapperida</span></li>
+          <li><strong>Reviewer</strong><br><span class="muted">Akademisi & Praktisi</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📖 Panduan Penulis</h3>
+      <ol class="list-ordered">
+        <li>Naskah ditulis dalam Bahasa Indonesia atau Inggris</li>
+        <li>Panjang artikel: 6.000 – 10.000 kata</li>
+        <li>Format: A4, margin 2.5cm, font Times New Roman 12pt, spasi 1.5</li>
+        <li>Sertakan abstrak (200-250 kata) dan 3-5 kata kunci</li>
+        <li>Referensi minimal 15 rujukan (5 tahun terakhir)</li>
+        <li>Format referensi: APA Style 7th edition</li>
+        <li>File naskah dalam format .docx atau .pdf</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SUBMIT ==================== -->
+<section id="page-submit" class="page">
+  <div class="container">
+    <h2 class="page-title">Submit Artikel</h2>
+
+    <div id="submitGuest" class="card center">
+      <h3>Login Diperlukan</h3>
+      <p class="muted">Silakan login dengan akun Google untuk mengirimkan artikel</p>
+      <button class="btn btn-google" onclick="loginWithGoogle()">Login dengan Google</button>
+    </div>
+
+    <form id="submitForm" class="card hidden" onsubmit="handleSubmit(event)">
+      <h3>Formulir Submisi</h3>
+
+      <div class="field">
+        <label>Judul Artikel *</label>
+        <input type="text" name="title" required placeholder="Masukkan judul artikel">
+      </div>
+
+      <div class="field">
+        <label>Abstrak * (200-250 kata)</label>
+        <textarea name="abstract" rows="6" required placeholder="Tulis abstrak di sini..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Kata Kunci * (pisahkan dengan koma)</label>
+        <input type="text" name="keywords" required placeholder="pembangunan, inovasi, palopo">
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Bidang / Seksi *</label>
+          <select name="section" required>
+            <option value="">-- Pilih Bidang --</option>
+            <option>Pembangunan Daerah</option>
+            <option>Riset Terapan</option>
+            <option>Inovasi Daerah</option>
+            <option>Kebijakan Publik</option>
+            <option>Ekonomi Biru</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tipe Artikel *</label>
+          <select name="type" required>
+            <option value="">-- Pilih Tipe --</option>
+            <option>Research Article</option>
+            <option>Review Article</option>
+            <option>Policy Brief</option>
+            <option>Short Communication</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Afiliasi / Institusi *</label>
+        <input type="text" name="affiliation" required placeholder="Universitas / Instansi Anda">
+      </div>
+
+      <div class="field">
+        <label>File Naskah * (.docx / .pdf, maks 10MB)</label>
+        <input type="file" name="manuscript" accept=".doc,.docx,.pdf" required id="manuscriptInput">
+        <small class="muted">File akan diunggah ke Cloudinary</small>
+      </div>
+
+      <div class="field checkbox">
+        <label>
+          <input type="checkbox" required>
+          Saya menyatakan naskah ini original, belum pernah dipublikasikan, dan tidak sedang dipertimbangkan di jurnal lain.
+        </label>
+      </div>
+
+      <div class="progress hidden" id="uploadProgress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+        Kirim Naskah
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ==================== DASHBOARD ==================== -->
+<section id="page-dashboard" class="page">
+  <div class="container">
+    <h2 class="page-title">Dashboard Penulis</h2>
+    <p class="muted" id="dashboardGreeting">Selamat datang!</p>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="tabSubmissions" onclick="switchTab(this)">Submisi Saya</button>
+      <button class="tab" data-tab="tabProfile" onclick="switchTab(this)">Profil</button>
+    </div>
+
+    <div id="tabSubmissions" class="tab-content active">
+      <div id="mySubmissions" class="articles-list">
+        <div class="empty">Memuat...</div>
+      </div>
+    </div>
+
+    <div id="tabProfile" class="tab-content">
+      <div class="card">
+        <h3>Profil Pengguna</h3>
+        <div class="profile-row">
+          <img id="profileAvatar" class="avatar-lg" alt="">
+          <div>
+            <p><strong id="profileName"></strong></p>
+            <p class="muted" id="profileEmail"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p><strong>Jurnal PERI Palopo</strong> — Pembangunan, Riset dan Inovasi</p>
+    <p class="muted">© 2026 Bapperida Kota Palopo. Powered by OJS-style Frontend.</p>
+  </div>
+</footer>
+
+<!-- ========== FIREBASE SDK ========== -->
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -19,8 +19,6 @@ Web app OJS-style untuk **Jurnal PERI Palopo** (Pembangunan, Riset dan Inovasi) 
 3. Buat **Firestore Database** (mode production/test)
 4. Salin config ke `js/firebase-config.js`
 
-**Firestore Rules (Development):**
-
 
 ### 2. Cloudinary
 1. Daftar gratis di https://cloudinary.com

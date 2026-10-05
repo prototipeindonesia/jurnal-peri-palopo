@@ -20,3 +20,26 @@ Web app OJS-style untuk **Jurnal PERI Palopo** (Pembangunan, Riset dan Inovasi) 
 4. Salin config ke `js/firebase-config.js`
 
 **Firestore Rules (Development):**
+
+
+### 2. Cloudinary
+1. Daftar gratis di https://cloudinary.com
+2. Buka **Settings → Upload → Upload presets**
+3. Buat preset baru: **Unsigned mode**
+4. Salin `cloudName` & `uploadPreset` ke `js/cloudinary-config.js`
+
+### 3. Deploy ke GitHub Pages
+1. Push semua file ke repo GitHub
+2. **Settings → Pages → Source: main / root**
+3. Akses: `https://username.github.io/nama-repo/`
+
+## 📁 Struktur
+
+
+## 🚀 Roadmap Berikutnya
+- [ ] Panel Editor (approve/reject/ubah status)
+- [ ] Halaman detail artikel + DOI
+- [ ] Komentar & diskusi
+- [ ] Export metadata (OAI-PMH, Crossref XML)
+- [ ] Multi-bahasa (ID/EN)
+- [ ] Search & filter artikel
